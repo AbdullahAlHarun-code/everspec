@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 #from updates.views import json_example, jsonCBV, JsonCBV2, SerializedListView, SerializedDetailView
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +26,5 @@ urlpatterns = [
     # path('join/jsoncbv2', JsonCBV2.as_view()),
     # path('join/serialized/list', SerializedListView.as_view()),
     # path('join/serialized/details', SerializedDetailView.as_view())
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+ + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
